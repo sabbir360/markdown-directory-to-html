@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title | default('Markdown to HTML', true) }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/static/css/markdown.css">
+</head>
+
+<body class="ready sticky">
+
+<main>
+    <button class="sidebar-toggle" aria-label="Menu">
+        <strong class="sidebar-toggle-button"><span></span><span></span><span></span></strong>
+    </button>
+    <aside class="sidebar">
+        <div class="sidebar-nav">
+            {# START OF TREE #}
+
+            <ul id="tree">
+                <li><span class="tree-caret">Beverages</span>
+                    <ul class="tree-nested">
+                        <li>Water</li>
+                        <li>Coffee</li>
+                        <li><span class="tree-caret">Tea</span>
+                            <ul class="tree-nested">
+                                <li>Black Tea</li>
+                                <li>White Tea</li>
+                                <li><span class="tree-caret">Green Tea</span>
+                                    <ul class="tree-nested">
+                                        <li>Sencha</li>
+                                        <li>Gyokuro</li>
+                                        <li>Matcha</li>
+                                        <li>Pi Lo Chun</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            {# END OF TREE #}
+            <ul>
+                {#{% for markdown_item in markdown_list %}
+                    <li>
+                        {% for dep in markdown_list.depth %}
+
+                            {% if loop.first %}
+                                <ul>
+                            {% endif %}
+                        <li>{{ dep }}</li>
+                        {% if dep!= markdown_item.name %}
+                            <li>
+                                <a class="section-link" href="/?file={{ markdown_item.path }}">
+                                    {{ markdown_item.name }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+
+                        {% endfor %}
+                    </li>
+                {% endfor %}#}
+                <li><a class="section-link" href="#/?id=license" title="License">License</a></li>
+            </ul>
+        </div>
+    </aside>
+    <section class="content">
+        <article class="markdown-section" id="main">
+            {{ data|safe }}
+        </article>
+    </section>
+</main>
+
+<script>
+    var toggler = document.getElementsByClassName("tree-caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".tree-nested").classList.toggle("tree-active");
+            this.classList.toggle("caret-down");
+        });
+    }
+</script>
+
+</body>
+</html>
