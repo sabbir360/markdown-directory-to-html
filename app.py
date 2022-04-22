@@ -8,18 +8,18 @@ DOC_DIRECTORY = f'{os.getcwd()}{os.sep}doc'
 def directory_tree(path):
     string_build = ""
     space = "&nbsp;&nbsp;&nbsp;"
-    first = True
+    count = 0
     for dirpath, dirnames, filenames in os.walk(path):
         directory_level = dirpath.replace(path, "")
         directory_level = directory_level.count(os.sep)
-        if first:
+        if directory_level == 0:
+            count+=1
             root_display = 'style="display: inline!important"'
             alter_display = 'style="display: none!important"'
-            first = False
 
-            dir_name = f"{DOC_DIRECTORY.split(os.sep)[-2]}"
-            dir_sanitized = ""
-            dir_id = f"{dir_name}_"
+            dir_name = f"{dirpath.split(os.sep)[-1]}"
+            dir_sanitized = dirpath.replace(DOC_DIRECTORY, "")
+            dir_id = dir_sanitized.replace(os.sep, "_")
         else:
             root_display = ""
             alter_display = ''
@@ -31,7 +31,7 @@ def directory_tree(path):
         indent = space * (4 * directory_level)
         indent_2 = space * (4 * directory_level + 1)
 
-        string_build += f'''            
+        string_build += f'''
             <div data-id="{dir_id}" class="directory-wrapper">
                 {indent}
                 <span class="directory-close" {root_display}>📁&nbsp;</span>
@@ -42,13 +42,14 @@ def directory_tree(path):
 
         for f in filenames:
             # print(f)
-            string_build += f'''
-            <div>
-                &nbsp;&nbsp;{indent_2}
-                <a class="section-link" href="?dir={dir_sanitized}&file={f}">
-                    <span>🗎&nbsp;</span>{f}
-                </a>            
-            </div>'''
+            if f.endswith(".md"):
+                string_build += f'''
+                <div>
+                    &nbsp;&nbsp;{indent_2}
+                    <a class="section-link" href="?dir={dir_sanitized}&file={f}">
+                        <span>🗎&nbsp;</span>{f}
+                    </a>            
+                </div>'''
 
         string_build += "</div></div>"
 
