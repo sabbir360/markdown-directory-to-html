@@ -971,40 +971,10 @@ code .token {
 }
 
 /*tree*/
-ul, #tree {
-  list-style-type: none;
+.directory-wrapper{
+    cursor: pointer;
 }
 
-#tree {
-  margin: 0;
-  padding: 0;
-}
-
-.tree-caret {
-  cursor: pointer;
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none;
-}
-
-.tree-caret::before {
-  content: "\25B6";
-  color: black;
-  display: inline-block;
-  margin-right: 6px;
-}
-
-.tree-caret-down::before {
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Safari */'
-  transform: rotate(90deg);
-}
-
-.tree-nested {
-  display: none;
-}
-
-.tree-active {
-  display: block;
+.directory-open, .directory-child{
+    display: none;
 }
