@@ -48,6 +48,11 @@ If you want to avoid these hassles, Install
 ## How to run unittest
 - Inside your virtualenv run `python -m unittest discover tests`
 
+## How to see code coverage
+- `coverage run -m unittest discover tests`
+- `coverage report -m`
+- For html check `coverage html` and browse `htmlcov\index.html`
+
 ## Limitation / future plan
   - This project has some error for unwanted Markdown format
   - For linking any internal directories

@@ -20,7 +20,11 @@ class AppTestSuit(unittest.TestCase):
         response = self.client.get("/")
         assert response.status_code == 200
 
+    def test_security_error(self):
+        response = self.client.get("/?dir=..&file=README.md")
+        assert response.status_code == 403
 
+    def test_file_not_found_error(self):
+        response = self.client.get("/?dir=intentional_404&file=NO_README.md")
+        assert response.text.find("Please select file from left side tree.") != -1
 
-if __name__ == "__main__":
-    unittest.main()
