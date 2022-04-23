@@ -45,6 +45,9 @@ If you want to avoid these hassles, Install
  - Browse `127.0.0.1:5000`
  - To remove this from docker `docker-compose down`
 
+## How to run unittest
+- Inside your virtualenv run `python -m unittest discover tests`
+
 ## Limitation / future plan
   - This project has some error for unwanted Markdown format
   - For linking any internal directories

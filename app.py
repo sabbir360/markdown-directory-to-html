@@ -94,5 +94,10 @@ def index():
     return render_template('index.html', data=r, markdown_list=MARKDOWN_LIST)
 
 
+def create_app():
+    global app
+    return app
+
+
 if __name__ == '__main__':
-    app.run()
+    create_app().run()
