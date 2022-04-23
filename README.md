@@ -44,3 +44,8 @@ If you want to avoid these hassles, Install
  - `docker-compose build` and then `docker-compose up -d`
  - Browse `127.0.0.1:5000`
  - To remove this from docker `docker-compose down`
+
+## Limitation / future plan
+  - This project has some error for unwanted Markdown format
+  - For linking any internal directories
+  - Those will be solved in the future, or you can raise issue or, contact me
