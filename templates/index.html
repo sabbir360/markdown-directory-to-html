@@ -12,9 +12,9 @@
 <body class="ready sticky">
 
 <main>
-    <button class="sidebar-toggle" aria-label="Menu">
+    {#<button class="sidebar-toggle" aria-label="Menu">
         <strong class="sidebar-toggle-button"><span></span><span></span><span></span></strong>
-    </button>
+    </button>#}
     <aside class="sidebar">
         <div class="sidebar-nav">
             {{ markdown_list|safe }}
@@ -57,6 +57,11 @@
                 }
             }
         });
+
+       {# // sidebar toggle
+        $("button.sidebar-toggle").on("click", function (){
+            $("aside.sidebar").toggle()
+        })#}
 
     });
     // select current page at menu
