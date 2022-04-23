@@ -978,3 +978,8 @@ code .token {
 .directory-open, .directory-child{
     display: none;
 }
+
+.menu-selected{
+    font-weight: bold;
+    font-style: italic;
+}

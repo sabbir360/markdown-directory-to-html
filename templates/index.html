@@ -29,7 +29,9 @@
 <script src="/static/jquery.js"></script>
 <script>
     $(document).ready(function () {
-        $(".directory-wrapper").on("click", function () {
+        const directory_wrapper = $(".directory-wrapper");
+        // expand directory
+        directory_wrapper.on("click", function () {
             let current = $(this)
             let flip_item = $('#' + current.attr("data-id"))
             if (flip_item.css("display") === "none") {
@@ -42,9 +44,40 @@
                 current.find(".directory-open").css("display", "none")
             }
 
+        });
 
-        })
-    })
+        // hide empty directory
+        directory_wrapper.each(function () {
+            let data_elem = $(this).attr("data-id")
+
+            if (data_elem.length > 0) {
+                let elem = $('#' + $(this).attr("data-id"))
+                if (elem.children().length < 1) {
+                    elem.parent().hide()
+                }
+            }
+        });
+
+    });
+    // select current page at menu
+    $(window).on('load', function () {
+        let hash = window.location.hash;
+        if (hash) {
+            let data = hash.split("__sep__");
+            if (data.length > 1) {
+
+                // remove selected
+                $(".menu-selected").each(function () {
+                    $(this).removeClass("menu-selected");
+                });
+
+                $(data[0]).css("display", "block");
+                {#console.log($("#_en-US_quickstart__sep__model").html())#}
+                $(hash).addClass("menu-selected");
+
+            }
+        }
+    });
 </script>
 
 </body>

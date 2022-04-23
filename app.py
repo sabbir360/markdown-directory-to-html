@@ -8,12 +8,12 @@ DOC_DIRECTORY = f'{os.getcwd()}{os.sep}doc'
 def directory_tree(path):
     string_build = ""
     space = "&nbsp;&nbsp;&nbsp;"
-    count = 0
+
     for dirpath, dirnames, filenames in os.walk(path):
         directory_level = dirpath.replace(path, "")
         directory_level = directory_level.count(os.sep)
+
         if directory_level == 0:
-            count+=1
             root_display = 'style="display: inline!important"'
             alter_display = 'style="display: none!important"'
 
@@ -41,12 +41,21 @@ def directory_tree(path):
         '''
 
         for f in filenames:
-            # print(f)
+
             if f.endswith(".md"):
+
+                if directory_level == 0 and f == "README.md":
+                    menu = " menu-selected"
+                    select_id = ''
+                else:
+                    menu = ""
+                    select_id = f'{dir_id}__sep__{f.replace(".md", "")}'
                 string_build += f'''
                 <div>
-                    &nbsp;&nbsp;{indent_2}
-                    <a class="section-link" href="?dir={dir_sanitized}&file={f}">
+                    &nbsp;&nbsp;{indent_2}                    
+                    <a class="section-link{menu}" 
+                    id="{select_id}" 
+                    href="?dir={dir_sanitized}&file={f}#{select_id}"> 
                         <span>🗎&nbsp;</span>{f}
                     </a>            
                 </div>'''
