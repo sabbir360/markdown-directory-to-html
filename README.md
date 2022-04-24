@@ -56,4 +56,6 @@ If you want to avoid these hassles, Install
 ## Limitation / future plan
   - This project has some error for unwanted Markdown format
   - For linking any internal directories
-  - Those will be solved in the future, or you can raise issue or, contact me
+  - Generate HTML Site, so no more python dependancy
+  - Search content
+  - Those will be solved in the future, or you can raise issue, contribute or, contact me
